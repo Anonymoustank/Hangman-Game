@@ -4,8 +4,8 @@ import os
 import time
 from sys import exit
 
-WIDTH = 360
-HEIGHT = 480
+WIDTH = 500
+HEIGHT = 700
 FPS = 60
 
 WHITE = (255, 255, 255)
@@ -23,9 +23,11 @@ clock = pg.time.Clock()
 word = str(getpass.getpass("Enter your word: "))
 word_check = "" #used to check if words are equal by adding spaces between the letters in word
 running = True
-
+attempt = 0
 def create_surface(input_word):
-    textsurface = myfont.render(input_word, False, (WHITE))
+    #pg.draw.rect(screen, BLACK, (0, 0, 200, 800), 100)
+    screen.fill(BLACK)
+    textsurface = myfont.render(input_word, True, (WHITE))
     screen.blit(textsurface,(0,0))
     pg.display.update()
                 
@@ -47,7 +49,7 @@ while running == True:
     print(hidden_word)
     screen.fill(BLACK)
     pg.font.init()
-    myfont = pg.font.SysFont('Comic Sans MS', 30)
+    myfont = pg.font.SysFont('Arial', 45)
     create_surface(hidden_word)
     pg.display.flip()
     while hidden_word != word:
