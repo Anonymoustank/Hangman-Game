@@ -15,7 +15,8 @@ GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 
 pg.init()
-#pg.mixer.init()
+pg.mixer.init()
+
 screen = pg.display.set_mode((WIDTH, HEIGHT))
 pg.display.set_caption("Hangman!")
 clock = pg.time.Clock()
@@ -68,7 +69,9 @@ while running == True:
             print("The secret word is " + word)
             print("You Won!")
             create_surface(hidden_word)
-            time.sleep(2)
+            pg.mixer.music.load("/mnt/chromeos/GoogleDrive/MyDrive/Python/Victory.mp3")
+            pg.mixer.music.play()
+            time.sleep(5)
             running = False
             break
         else:
