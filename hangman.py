@@ -78,6 +78,9 @@ while running == True:
         else:
             if correct_guess == False:
                 num_wrong += 1
+                pg.mixer.music.load("/mnt/chromeos/GoogleDrive/MyDrive/Python/Wrong_Buzzer.mp3")
+                pg.mixer.music.play()
+                pg.event.wait()
             correct_guess = False
             create_surface(hidden_word)
             print(hidden_word)
