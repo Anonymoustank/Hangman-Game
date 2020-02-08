@@ -31,7 +31,8 @@ def create_surface(input_word):
     screen.blit(textsurface,(0,0))
     noose_num = "Hang" + str(num_wrong) + ".png"
     noose = pg.image.load("images/" + noose_num)
-    screen.blit(noose, (250, 350)) 
+    noose = pg.transform.scale(noose, (400, 400))
+    screen.blit(noose, (100, 200)) 
     pg.display.update()            
 while running == True:
     clock.tick(FPS)
@@ -84,9 +85,12 @@ while running == True:
                 print("You lose!")
                 screen.fill(BLACK)
                 textsurface = myfont.render("You lose!", True, (WHITE))
-                screen.blit(textsurface,(200, 350))
+                screen.blit(textsurface,(200, 100))
                 textsurface = myfont.render("The word is " + word, True, (WHITE))
-                screen.blit(textsurface,(135, 400))
+                screen.blit(textsurface,(150, 600))
+                noose = pg.image.load("images/Hang7.png")
+                noose = pg.transform.scale(noose, (400, 400))
+                screen.blit(noose, (100, 200)) 
                 pg.display.update()
                 running = False
                 time.sleep(3)
