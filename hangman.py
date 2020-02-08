@@ -30,7 +30,7 @@ def create_surface(input_word):
     screen.blit(textsurface,(0,0))
     noose_num = "Hang" + str(num_wrong) + ".png"
     noose = pg.image.load("images/" + noose_num)
-    screen.blit(noose, (250, 350))
+    screen.blit(noose, (250, 350)) 
     pg.display.update()            
 while running == True:
     clock.tick(FPS)
@@ -77,6 +77,17 @@ while running == True:
             correct_guess = False
             create_surface(hidden_word)
             print(hidden_word)
+            if num_wrong == 7:
+                print("You lose!")
+                screen.fill(BLACK)
+                textsurface = myfont.render("You lose!", True, (WHITE))
+                screen.blit(textsurface,(200, 350))
+                textsurface = myfont.render("The word is " + word, True, (WHITE))
+                screen.blit(textsurface,(135, 400))
+                pg.display.update()
+                running = False
+                time.sleep(3)
+                break
 pg.display.quit()
 pg.quit()
 quit()
