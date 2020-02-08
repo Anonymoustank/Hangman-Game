@@ -57,6 +57,9 @@ while running == True:
     pg.display.flip()
     correct_guess = False
     while hidden_word != word:
+        jeopardy = open("/mnt/chromeos/GoogleDrive/MyDrive/Python/Jeopardy.mp3")
+        pg.mixer.music.load(jeopardy)
+        pg.mixer.music.play()
         guess = input("Guess a letter: ")
         hidden_word_list = list(hidden_word)
         for index,char in enumerate(word):
@@ -66,6 +69,12 @@ while running == True:
                 correct_guess = True
                 for i in hidden_word_list:
                     hidden_word += i
+        if correct_guess == True:
+            pg.mixer.music.stop()
+            jeopardy.close()
+            pg.mixer.music.load("/mnt/chromeos/GoogleDrive/MyDrive/Python/Correct.mp3")
+            pg.mixer.music.play()
+            time.sleep(1.5)
         if hidden_word == word_check:
             print("The secret word is " + word)
             print("You Won!")
@@ -78,9 +87,11 @@ while running == True:
         else:
             if correct_guess == False:
                 num_wrong += 1
+                pg.mixer.music.stop()
+                jeopardy.close()
                 pg.mixer.music.load("/mnt/chromeos/GoogleDrive/MyDrive/Python/Wrong_Buzzer.mp3")
                 pg.mixer.music.play()
-                pg.event.wait()
+                time.sleep(2)
             correct_guess = False
             create_surface(hidden_word)
             print(hidden_word)
