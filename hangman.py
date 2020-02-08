@@ -23,13 +23,15 @@ clock = pg.time.Clock()
 word = str(getpass.getpass("Enter your word: "))
 word_check = "" #used to check if words are equal by adding spaces between the letters in word
 running = True
-attempt = 0
+num_wrong = 0
 def create_surface(input_word):
-    #pg.draw.rect(screen, BLACK, (0, 0, 200, 800), 100)
     screen.fill(BLACK)
     textsurface = myfont.render(input_word, True, (WHITE))
     screen.blit(textsurface,(0,0))
     pg.display.update()
+    noose_num = "Hang" + str(num_wrong) + ".png"
+    noose = pg.image.load("images/" + noose_num)
+    screen.blit(noose, (250, 350))
                 
 while running == True:
     clock.tick(FPS)
@@ -69,6 +71,7 @@ while running == True:
             running = False
             break
         else:
+            num_wrong += 1
             create_surface(hidden_word)
             print(hidden_word)
 pg.display.quit()
