@@ -28,11 +28,10 @@ def create_surface(input_word):
     screen.fill(BLACK)
     textsurface = myfont.render(input_word, True, (WHITE))
     screen.blit(textsurface,(0,0))
-    pg.display.update()
     noose_num = "Hang" + str(num_wrong) + ".png"
     noose = pg.image.load("images/" + noose_num)
     screen.blit(noose, (250, 350))
-                
+    pg.display.update()            
 while running == True:
     clock.tick(FPS)
     for event in pg.event.get():
@@ -54,6 +53,7 @@ while running == True:
     myfont = pg.font.SysFont('Arial', 45)
     create_surface(hidden_word)
     pg.display.flip()
+    correct_guess = False
     while hidden_word != word:
         guess = input("Guess a letter: ")
         hidden_word_list = list(hidden_word)
@@ -61,6 +61,7 @@ while running == True:
             if char == guess:
                 hidden_word_list[index * 2] = guess
                 hidden_word = ""
+                correct_guess = True
                 for i in hidden_word_list:
                     hidden_word += i
         if hidden_word == word_check:
@@ -71,7 +72,9 @@ while running == True:
             running = False
             break
         else:
-            num_wrong += 1
+            if correct_guess == False:
+                num_wrong += 1
+            correct_guess = False
             create_surface(hidden_word)
             print(hidden_word)
 pg.display.quit()
