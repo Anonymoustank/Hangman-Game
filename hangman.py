@@ -57,7 +57,7 @@ while running == True:
     pg.display.flip()
     correct_guess = False
     while hidden_word != word:
-        jeopardy = open("/mnt/chromeos/GoogleDrive/MyDrive/Python/Jeopardy.mp3")
+        jeopardy = open("hangman-audio/Jeopardy.mp3")
         pg.mixer.music.load(jeopardy)
         pg.mixer.music.play()
         guess = input("Guess a letter: ")
@@ -72,17 +72,17 @@ while running == True:
         if correct_guess == True:
             pg.mixer.music.stop()
             jeopardy.close()
-            pg.mixer.music.load("/mnt/chromeos/GoogleDrive/MyDrive/Python/Correct.mp3")
+            pg.mixer.music.load("hangman-audio/Correct.mp3")
             pg.mixer.music.play()
             time.sleep(1.5)
         if hidden_word == word_check:
             print("The secret word is " + word)
             print("You Won!")
             create_surface(hidden_word)
-            pg.mixer.music.load("/mnt/chromeos/GoogleDrive/MyDrive/Python/Victory.mp3")
+            pg.mixer.music.load("hangman-audio/Victory.mp3")
             pg.mixer.music.play()
             textsurface = myfont.render("You Won!", True, (WHITE))
-            screen.blit(textsurface,(150, 600))
+            screen.blit(textsurface,(175, 600))
             pg.display.update()
             time.sleep(5)
             running = False
@@ -92,7 +92,7 @@ while running == True:
                 num_wrong += 1
                 pg.mixer.music.stop()
                 jeopardy.close()
-                pg.mixer.music.load("/mnt/chromeos/GoogleDrive/MyDrive/Python/Wrong_Buzzer.mp3")
+                pg.mixer.music.load("hangman-audio/Wrong_Buzzer.mp3")
                 pg.mixer.music.play()
                 time.sleep(2)
             correct_guess = False
