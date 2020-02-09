@@ -81,6 +81,9 @@ while running == True:
             create_surface(hidden_word)
             pg.mixer.music.load("/mnt/chromeos/GoogleDrive/MyDrive/Python/Victory.mp3")
             pg.mixer.music.play()
+            textsurface = myfont.render("You Won!", True, (WHITE))
+            screen.blit(textsurface,(150, 600))
+            pg.display.update()
             time.sleep(5)
             running = False
             break
