@@ -1,7 +1,11 @@
-import getpass
 import pygame as pg
 import os
 import time
+from tkinter.simpledialog import askstring
+from tkinter import simpledialog
+import tkinter
+root = tkinter.Tk()
+root.withdraw()
 from sys import exit
 
 WIDTH = 500
@@ -21,7 +25,7 @@ screen = pg.display.set_mode((WIDTH, HEIGHT))
 pg.display.set_caption("Hangman!")
 clock = pg.time.Clock()
 
-word = str(getpass.getpass("Enter your word: "))
+word = askstring("Enter a word", "Enter a word", show='*')
 word_check = "" #used to check if words are equal by adding spaces between the letters in word
 running = True
 num_wrong = 0
@@ -48,8 +52,6 @@ while running == True:
     for i in range(len(word)):
         hidden_word += "_"
         hidden_word += " "
-    os.system("/usr/bin/clear") #clears terminal
-    print(hidden_word)
     screen.fill(BLACK)
     pg.font.init()
     myfont = pg.font.SysFont('Arial', 45)
@@ -60,7 +62,7 @@ while running == True:
         jeopardy = open("hangman-audio/Jeopardy.mp3")
         pg.mixer.music.load(jeopardy)
         pg.mixer.music.play()
-        guess = input("Guess a letter: ")
+        guess = askstring("Guess a letter", "Guess a letter")
         hidden_word_list = list(hidden_word)
         for index,char in enumerate(word):
             if char == guess:
@@ -97,7 +99,6 @@ while running == True:
                 time.sleep(2)
             correct_guess = False
             create_surface(hidden_word)
-            print(hidden_word)
             if num_wrong == 7:
                 print("You lose!")
                 screen.fill(BLACK)
