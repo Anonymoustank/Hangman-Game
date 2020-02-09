@@ -60,7 +60,7 @@ while running == True:
     while hidden_word != word:
         jeopardy = open("hangman-audio/Jeopardy.mp3")
         pg.mixer.music.load(jeopardy)
-        pg.mixer.music.play()
+        pg.mixer.music.play(-1)
         num_attempt = myfont.render("Attempts left: " + str(7-num_wrong), True, (WHITE))
         screen.blit(num_attempt,(250,HEIGHT-50))
         pg.display.update()
