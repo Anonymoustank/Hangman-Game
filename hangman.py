@@ -61,6 +61,9 @@ while running == True:
         jeopardy = open("hangman-audio/Jeopardy.mp3")
         pg.mixer.music.load(jeopardy)
         pg.mixer.music.play()
+        num_attempt = myfont.render("Attempts left: " + str(7-num_wrong), True, (WHITE))
+        screen.blit(num_attempt,(250,HEIGHT-50))
+        pg.display.update()
         guess = askstring("Guess a letter", "Guess a letter")
         hidden_word_list = list(hidden_word)
         for index,char in enumerate(word):
@@ -96,6 +99,9 @@ while running == True:
                 time.sleep(2)
             correct_guess = False
             create_surface(hidden_word)
+            num_attempt = myfont.render("Attempts left: " + str(7-num_wrong), True, (WHITE))
+            screen.blit(num_attempt,(250,HEIGHT-50))
+            pg.display.update()
             if num_wrong == 7:
                 screen.fill(BLACK)
                 textsurface = myfont.render("You lose!", True, (WHITE))
