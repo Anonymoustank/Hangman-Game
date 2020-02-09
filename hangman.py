@@ -1,5 +1,4 @@
 import pygame as pg
-import os
 import time
 from tkinter.simpledialog import askstring
 from tkinter import simpledialog
@@ -78,8 +77,6 @@ while running == True:
             pg.mixer.music.play()
             time.sleep(1.5)
         if hidden_word == word_check:
-            print("The secret word is " + word)
-            print("You Won!")
             create_surface(hidden_word)
             pg.mixer.music.load("hangman-audio/Victory.mp3")
             pg.mixer.music.play()
@@ -100,7 +97,6 @@ while running == True:
             correct_guess = False
             create_surface(hidden_word)
             if num_wrong == 7:
-                print("You lose!")
                 screen.fill(BLACK)
                 textsurface = myfont.render("You lose!", True, (WHITE))
                 screen.blit(textsurface,(200, 100))
