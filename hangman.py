@@ -16,18 +16,18 @@ BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
-
 pg.init()
 pg.mixer.init()
-
-screen = pg.display.set_mode((WIDTH, HEIGHT))
-pg.display.set_caption("Hangman!")
-clock = pg.time.Clock()
 
 word = askstring("Enter a word", "Enter a word", show='*')
 word_check = "" #used to check if words are equal by adding spaces between the letters in word
 running = True
 num_wrong = 0
+
+screen = pg.display.set_mode((WIDTH, HEIGHT))
+pg.display.set_caption("Hangman!")
+clock = pg.time.Clock()
+
 def create_surface(input_word):
     screen.fill(BLACK)
     textsurface = myfont.render(input_word, True, (WHITE))
