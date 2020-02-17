@@ -118,4 +118,4 @@ while running == True:
 pg.display.quit()
 pg.quit()
 quit()
-            
+root.mainloop()            
