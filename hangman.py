@@ -20,7 +20,7 @@ pg.init()
 pg.mixer.init()
 
 word = askstring("Enter a word", "Enter a word", show='*')
-word = lower(word)
+word = word.lower()
 word_check = "" #used to check if words are equal by adding spaces between the letters in word
 running = True
 num_wrong = 0
@@ -66,6 +66,7 @@ while running == True:
         screen.blit(num_attempt,(250,HEIGHT-50))
         pg.display.update()
         guess = askstring("Guess a letter", "Guess a letter")
+        guess = guess.lower()
         hidden_word_list = list(hidden_word)
         for index,char in enumerate(word):
             if char == guess:
@@ -74,7 +75,11 @@ while running == True:
                 correct_guess = True
                 for i in hidden_word_list:
                     hidden_word += i
-        if lower(guess) == word:
+        if guess == word:
+            hidden_word = ""
+            for i in guess:
+                hidden_word += i
+                hidden_word += ""
             create_surface(hidden_word)
             pg.mixer.music.load("hangman-audio/Victory.mp3")
             pg.mixer.music.play()
