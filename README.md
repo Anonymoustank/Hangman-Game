@@ -1,6 +1,7 @@
 # Hangman-Game
 Just a simple hangman game written in Python 3
+Make sure to extract the zip file!
 
-How to install dependencies on Debian-based systems:
-1: pip3 install pygame
-2: sudo apt -y install python3-tk
+Dependencies:
+1: Pygame
+2: Tkinter
