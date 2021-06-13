@@ -24,10 +24,21 @@ word = word.lower()
 word_check = "" #used to check if words are equal by adding spaces between the letters in word
 running = True
 num_wrong = 0
+guess_list = []
 
 screen = pg.display.set_mode((WIDTH, HEIGHT))
 pg.display.set_caption("Hangman!")
 clock = pg.time.Clock()
+
+def ask(prompt):
+    global guess_list
+    guess = askstring(prompt, prompt)
+    guess = guess.lower()
+    if guess in guess_list:
+        return ask("Guess a letter that hasn't been guessed already")
+    else:
+        guess_list.append(guess)
+        return guess
 
 def create_surface(input_word):
     screen.fill(BLACK)
@@ -65,8 +76,8 @@ while running == True:
         num_attempt = myfont.render("Attempts left: " + str(7-num_wrong), True, (WHITE))
         screen.blit(num_attempt,(250,HEIGHT-50))
         pg.display.update()
-        guess = askstring("Guess a letter", "Guess a letter")
-        guess = guess.lower()
+        guess = ask("Guess a letter")
+            
         hidden_word_list = list(hidden_word)
         for index,char in enumerate(word):
             if char == guess:
@@ -123,7 +134,8 @@ while running == True:
                 textsurface = myfont.render("You lose!", True, (WHITE))
                 screen.blit(textsurface,(200, 100))
                 textsurface = myfont.render("The word is " + word, True, (WHITE))
-                screen.blit(textsurface,(150, 600))
+                text_rect = textsurface.get_rect(center=(WIDTH//2, 600))
+                screen.blit(textsurface, text_rect)
                 noose = pg.image.load("images/Hang7.png")
                 noose = pg.transform.scale(noose, (400, 400))
                 screen.blit(noose, (100, 200)) 
