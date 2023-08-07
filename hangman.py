@@ -7,7 +7,7 @@ root = tkinter.Tk()
 root.withdraw()
 from sys import exit
 
-WIDTH = 500
+WIDTH = 1000
 HEIGHT = 700
 FPS = 60
 
